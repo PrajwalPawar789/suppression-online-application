@@ -1,0 +1,132 @@
+<!-- views/navbar.ejs -->
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="/">
+            <img src="https://www.techresearchinfo.com/whitepaper/ManliticsLogo.png" alt="Manlitics Logo" class="navbar-logo">
+        </a>
+    </div>
+    <div class="navbar-center">
+        <a href="/" class="nav-link">Master Suppression</a>
+        <a href="/invalidemailcheck" class="nav-link">Invalidemailcheck</a>
+        <a href="/globalemailsuppression" class="nav-link">Global-email-suppression</a>
+        <a href="/dncsuppression" class="nav-link">DNC-suppression</a>
+        <div class="dropdown">
+            <a href="/insert" class="nav-link dropdown-toggle">Insert Data</a>
+            <div class="dropdown-content">
+                <!-- <a href="/Insert-invalidemailcheck" class="dropdown-item">Insert-Invalidemailcheck</a>
+                <a href="/Insert-globalemailsuppression" class="dropdown-item">Insert-Globalemailsuppression</a>
+                <a href="/Insert-dncsuppression" class="dropdown-item">Insert-Dnc-suppression</a>
+                <a href="/Insert-dnccompany" class="dropdown-item">Insert-Dnc-company</a> -->
+
+            </div>
+        </div>
+        <a href="/checkemail" class="nav-link">Check Email</a>
+        <a href="/documentation" class="nav-link">Documentation</a>
+    </div>
+    <div class="navbar-right">
+        <form action="/logout" method="GET">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        background-color: #111;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .navbar-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        height: 40px;
+        margin-right: 20px;
+    }
+
+    .navbar-center {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    .nav-link {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 16px;
+        position: relative;
+    }
+
+    .nav-link:hover {
+        text-decoration: underline;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-toggle::after {
+        content: ' ▼';
+        font-size: 12px;
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 200px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content .dropdown-item {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: block;
+        white-space: nowrap;
+    }
+
+    .dropdown-content .dropdown-item:hover {
+        background-color: #575757;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .logout-btn {
+        padding: 8px 16px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .logout-btn:hover {
+        background-color: #c82333;
+    }
+</style>

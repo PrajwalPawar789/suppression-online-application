@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/disableInspect.js"></script>
+    <title>Upload Excel File</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background-color: transparent;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        select {
+            background-color: #333;
+            color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ::-webkit-file-upload-button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ::-webkit-file-upload-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar included -->
+    <%- include('navbar') %>
+
+    <div class="container">
+        <h2>Upload Excel File and Check Suppression</h2>
+        <p>Download a sample Excel file for reference: <a href="/download/sample.xlsx" download>Download Sample Excel</a></p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="excelFile">Excel File</label>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="excelFile" name="excelFile" required>
+                    <label class="custom-file-label" for="excelFile">Choose file</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="clientCode">Client Code</label>
+                <select class="custom-select" id="clientCode" name="clientCode" required>
+                    <option value="">Choose client code</option>
+                    <option value="All">All (Excluding HN36)</option>
+                    <option value="MSFT">MSFT</option>
+                    <option value="TE72">TE72</option>
+                    <option value="AR13">AR13</option>
+                    <option value="TE16">TE16</option>
+                    <option value="DI31">DI31</option>
+                    <option value="HN36">HN36</option>
+                    <option value="AD62">AD62</option>
+                    <option value="AN12">AN12</option>
+                    <option value="DY78">DY78</option>
+                    <option value="MA99">MA99</option>
+                    <option value="NT26">NT26</option>
+                    <option value="UE88">UE88</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dateFilter">Date Filter</label>
+                <select class="custom-select" id="dateFilter" name="dateFilter" required>
+                    <option value="">Choose date filter</option>
+                    <option value="3" class="threeMonths">3 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="12">1 Year</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+
+    <script>
+        // Get the file input element and its label
+        const fileInput = document.getElementById('excelFile');
+        const fileLabel = document.querySelector('.custom-file-label');
+
+        // Update the label text when a file is selected
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileLabel.textContent = fileInput.files[0].name;
+            } else {
+                fileLabel.textContent = 'Choose file';
+            }
+        });
+
+        // Get the client code and date filter elements
+        const clientCode = document.getElementById('clientCode');
+        const dateFilter = document.getElementById('dateFilter');
+        const threeMonthsOption = document.querySelector('.threeMonths');
+
+        // Hide the 3 Months option by default
+        threeMonthsOption.style.display = 'none';
+
+        // Show or hide the 3 Months option based on client code selection
+        clientCode.addEventListener('change', () => {
+            if (clientCode.value === 'HN36') {
+                threeMonthsOption.style.display = 'block';
+            } else {
+                threeMonthsOption.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

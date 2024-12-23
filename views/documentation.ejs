@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Application Documentation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #ffbf00;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .status-options {
+            margin-left: 40px;
+        }
+
+        .status-options li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1>Suppression Application Documentation</h1>
+
+        <h2>1. Login Using Credentials</h2>
+        <p>Use your credentials to log in to the application.</p>
+
+        <h2>2. Master Suppression</h2>
+        <p>Upload an Excel file with the required column header names (Company Name, First Name, Last Name, Email ID, Phone Number, linkedinLink).</p>
+        <p>Ensure the file format is Excel (.xlsx), and fields should have the above mentioned column headers else the platform will throw an error.</p>
+        <p>Select the required client code filter (options include ALL, TE16, D131, HN36, AD62, AN12, DY78, MA99, NT26, UE88).</p>
+        <p>Choose the date filter (6 months / 1 year) for the suppression date check.</p>
+        <p>Upload the Excel file, and the application will generate an updated Excel file with three additional columns:</p>
+        <ul>
+            <li>Match Status: Indicates whether the entry was found in the database or not.</li>
+            <li>Client Code Status: Indicates if the entry was found in the database using the client code.</li>
+            <li>Date Status: Provides three status options:
+                <ul class="status-options">
+                    <li>Fresh Lead GTG: Indicates that the leads are good to go.</li>
+                    <li>Still Suppressed: Indicates that the leads are still in suppression.</li>
+                    <li>Suppression Cleared: Indicates that the suppression for the leads has been cleared.</li>
+                </ul>
+                <li>Email Status: Indicates whether the email id was match or unmatch.</li>
+                <li>Linkedin Link Status: Indicates whether the linkedin link was match or unmatch.</li>
+        </ul>
+
+        <h2>3. Check Email</h2>
+        <p>Check a single email using the client code. The application will provide two outputs: whether the email is present in the suppression or not.</p>
+        <p>The database check uses six fields: First Name, Last Name, Company Name, Email, Client Code, and LinkedIn Link. It returns the following statuses:</p>
+        <ul>
+            <li>Match Status: Indicates whether the entry was found in the database or not.</li>
+            <li>Client Code Status: Indicates if the entry was found in the database using the client code.</li>
+            <li>Date Status: Provides three status options:
+                <ul class="status-options">
+                    <li>Fresh Lead GTG: Indicates that the leads are good to go.</li>
+                    <li>Still Suppressed: Indicates that the leads are still in suppression.</li>
+                    <li>Suppression Cleared: Indicates that the suppression for the leads has been cleared.</li>
+                </ul>
+            </li>
+            <li>Email Status: Indicates whether the email ID was matched or unmatched.</li>
+            <li>LinkedIn Link Status: Indicates whether the LinkedIn link was matched or unmatched.</li>
+            <li>Data found status: Indicates whether the Data was Data found in suppression or Data not found in suppression.</li>
+        </ul>
+
+
+        <h2>4. Insert Data (Only for Delivery)</h2>
+        <p>Upload an Excel file with the required column header names (date_	month_	campaign_id	client	end_client_name	campaign_name	first_name	last_name	company_name	country	phone	email	linkedin_link	job_title	employee_size	asset	delivery_spoc	left_3	left_4	call_disposition	bcl_ops_tl_name	response_date).</p>
+        <p>Ensure the file format is Excel to avoid any errors.</p>
+        
+        <!-- <h2>Credentials</h2>
+        <p>Shared credentials have been provided to the Delivery team. Credentials will be shared separately with the Ops and QA teams.</p> -->
+    </div>
+</body>
+</html>

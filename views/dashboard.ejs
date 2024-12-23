@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Fetch Data for Dashboard</h1>
+    <form action="/datafordashboard" method="post">
+        <label for="start_date">Start Date:</label>
+        <input type="text" id="start_date" name="start_date" placeholder="DD-Mon-YY" required>
+        <br>
+        <label for="end_date">End Date:</label>
+        <input type="text" id="end_date" name="end_date" placeholder="DD-Mon-YY" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <% if (typeof data !== 'undefined') { %>
+        <h2>Results</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Delivery SPOC</th>
+                    <th>Country</th>
+                    <th>Campaign Name</th>
+                    <th>End Client Name</th>
+                    <th>Call Disposition</th>
+                    <th>Total Records</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(item => { %>
+                    <tr>
+                        <td><%= item.date_ %></td>
+                        <td><%= item.client %></td>
+                        <td><%= item.delivery_spoc %></td>
+                        <td><%= item.country %></td>
+                        <td><%= item.campaign_name %></td>
+                        <td><%= item.end_client_name %></td>
+                        <td><%= item.call_disposition %></td>
+                        <td><%= item.total_records %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else if (typeof message !== 'undefined') { %>
+        <p><%= message %></p>
+    <% } %>
+</body>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const startDate = document.getElementById('start_date').value;
+        const endDate = document.getElementById('end_date').value;
+        const datePattern = /^\d{2}-[A-Za-z]{3}-\d{2}$/; // For DD-Mon-YY format
+
+        if (!datePattern.test(startDate) || !datePattern.test(endDate)) {
+            alert('Please enter dates in DD-Mon-YY format.');
+            event.preventDefault();
+        }
+    });
+</script>
+</html>

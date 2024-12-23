@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Email Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar') %>
+
+    <div class="container">
+        <h2>Check Email Result</h2>
+        <% if (result.length === 0) { %>
+            <div class="alert alert-warning">No results found for the provided details.</div>
+        <% } else { %>
+            <div class="result">
+                <h4>Result:</h4>
+                <p><strong>Match Status:</strong> <%= result.match_status %></p>
+                <p><strong>Email Status:</strong> <%= result.email_status %></p>
+                <p><strong>Client Code Status:</strong> <%= result.client_code_status %></p>
+                <p><strong>LinkedIn Link Status:</strong> <%= result.linkedin_link_status %></p>
+                <p><strong>Date Status:</strong> <%= result.date_status %></p>
+                <p><strong>Global Email Status:</strong> <%= result.global_email_status %></p>
+                <p><strong>Invalid Email Status:</strong> <%= result.invalid_email_status %></p>
+            </div>
+        <% } %>
+        <!-- <button class="btn btn-secondary" onclick="goBack()">Go Back</button> -->
+        <a href="/checkemail" class="btn btn-primary">Check Another Email</a>
+    </div>
+
+    <script>
+        // Function to save input values to localStorage
+        function saveInputs() {
+            const email = document.getElementById('emailInput').value;
+            const clientCode = document.getElementById('clientCodeInput').value;
+            const firstName = document.getElementById('firstNameInput').value;
+            const lastName = document.getElementById('lastNameInput').value;
+            const companyName = document.getElementById('companyNameInput').value;
+            const linkedin = document.getElementById('linkedinInput').value;
+
+            localStorage.setItem('email', email);
+            localStorage.setItem('clientCode', clientCode);
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+            localStorage.setItem('companyName', companyName);
+            localStorage.setItem('linkedin', linkedin);
+        }
+
+        // Function to restore inputs from localStorage
+        function restoreInputs() {
+            document.getElementById('emailInput').value = localStorage.getItem('email') || '';
+            document.getElementById('clientCodeInput').value = localStorage.getItem('clientCode') || '';
+            document.getElementById('firstNameInput').value = localStorage.getItem('firstName') || '';
+            document.getElementById('lastNameInput').value = localStorage.getItem('lastName') || '';
+            document.getElementById('companyNameInput').value = localStorage.getItem('companyName') || '';
+            document.getElementById('linkedinInput').value = localStorage.getItem('linkedin') || '';
+        }
+
+        // Go back function to restore inputs and redirect
+        function goBack() {
+            saveInputs();
+            window.location.href = '/checkemail'; // Adjust this to your form page URL
+        }
+
+        // Call restoreInputs when the page loads
+        window.onload = restoreInputs;
+    </script>
+</body>
+</html>
