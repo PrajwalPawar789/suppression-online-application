@@ -1,0 +1,30 @@
+{
+  "name": "suppression-mvc-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "convert-excel-to-json": "^1.7.0",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "ejs": "^3.1.10",
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0",
+    "path": "^0.12.7",
+    "pg": "^8.11.5",
+    "read-excel-file": "^5.8.1",
+    "winston": "^3.13.0",
+    "xlsx": "^0.18.5"
+  }
+}
